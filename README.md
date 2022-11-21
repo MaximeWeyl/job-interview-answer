@@ -55,14 +55,13 @@ The R2D2 CLI has been release in GO. Its code is in the **cli** folder and
 calls the lib from **oddslib** folder.
 
 I have packaged the CLI into a sandbox container for testing in the browser.
-It is hosted on a virtual private server (VPS) and I will remove it some day.
-Feel free to play, here is the link : 
-
-https://cli-misteryemployer.maxime-weyl-data.science/
+It was hosted on a virtual private server (VPS) but I do not own it anymore.
+You could play with the link, here is a capture :
 
 ![R2D2 CLI demo](resources/cli-demo.gif "Logo Title Text 1")
 
-It has continuous delivery through CapRover and the ./captain-definition file.
+It has continuous delivery through CapRover and the ./captain-definition file. So you might set it up on your side.
+More easily, you could just run it locally with ```go run ./cli```
 
 ## Backend
 
@@ -85,11 +84,13 @@ Cloud Run, and the ./cloudbuild-backend.yaml and ./Dockerfile-backend files.
 
 Swagger address is : 
 
-https://misteryemployer-challenge-backend.maxime-weyl-data.science/api/v1/swagger/index.html
+https://cutt.ly/NMCE1le
+(shortlink-obfuscated for removing the mystery employer's name)
 
 API address is :
 
-https://misteryemployer-challenge-backend.maxime-weyl-data.science/api/v1
+https://cutt.ly/XMCRoaE
+(shortlink-obfuscated for removing the mystery employer's name)
 
 ## Frontend
 
@@ -104,4 +105,5 @@ very responsive.
 The frontend has continuous delivery on Google Cloud Platform's
 Cloud Run, and the ./cloudbuild-frontend.yaml and ./Dockerfile-frontend files.
 
-Here is the URL for you to play with : https://misteryemployer-challenge-frontend.maxime-weyl-data.science/
+Here is the URL for you to play with : https://cutt.ly/LMCRxnY
+(shortlink-obfuscated for removing the mystery employer's name)
