@@ -1,0 +1,11 @@
+FROM node:12.20.1-alpine3.10 AS builder
+
+RUN npm install -g @angular/cli@11.2.0
+RUN ng version
+COPY ./frontend ./frontend
+RUN cd frontend && npm install 
+RUN cd frontend &&  ng build --prod
+RUN find
+ 
+FROM nginx AS runner
+COPY --from=builder ./frontend/dist/frontend /usr/share/nginx/html

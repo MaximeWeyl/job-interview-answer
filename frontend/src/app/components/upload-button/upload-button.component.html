@@ -1,0 +1,5 @@
+<button mat-raised-button color="primary" (click)="fileInput.click()">
+    <span class="label">Select file</span>
+    <mat-icon aria-hidden="false" aria-label="Example home icon">cloud_upload</mat-icon>
+</button>
+<input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file">

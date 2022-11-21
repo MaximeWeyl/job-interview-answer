@@ -1,0 +1,23 @@
+
+<div class="app">
+  <div fxLayout="column" fxLayoutAlign="end center">
+    <h1>Let see if we might succeed :</h1>
+
+    <span>Upload Empire Info Json</span>
+    <app-upload-button class=button (newEmpire)="onNewEmpire($event)" (error)="onError($event)"></app-upload-button>
+    <p class="odds">Odds of success :</p>
+    
+    <p class="odds-number" [@oddsAnimation]="oddsAnimationState" >{{empireInfo!=undefined ? odds + " %" : "Unknown for now..."}}</p>
+    <p *ngIf="empireInfo==undefined">Select a file first</p>
+
+    <div *ngIf="empireInfo!=undefined">
+      <h2>Empire information :</h2>
+      <p>Countdown {{empireInfo.countdown}} days !</p>
+      <app-bounty-hunter-info 
+        [info]="item"
+        *ngFor="let item of empireInfo.bounty_hunters">
+      </app-bounty-hunter-info>
+    </div>
+
+  </div>
+</div>

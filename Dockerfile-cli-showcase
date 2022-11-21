@@ -1,0 +1,22 @@
+# === Build stage ===
+
+FROM golang:1.15.8-alpine3.13 AS builder
+WORKDIR /root/
+# To be able to use gcc
+RUN apk add build-base
+# To download (and cache) project dependencies
+COPY ./go.mod go.sum  ./src/
+RUN cd src && go mod download
+# To build the project
+COPY cli/ ./src/cli
+COPY oddslib/ ./src/oddslib
+RUN cd src && GOOS=linux go build -v -o r2d2 ./cli
+
+
+# Run stage
+FROM yaronpr/gotty AS runner
+WORKDIR /root/
+COPY ./rebels-specifications/examples ./examples
+COPY --from=builder /root/src/r2d2 /usr/local/sbin/
+RUN  find ./examples/ -name answer.json -exec rm {} \;
+

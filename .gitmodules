@@ -1,0 +1,3 @@
+[submodule "rebels-specifications"]
+	path = rebels-specifications
+	url = git@github.com:MaximeWeyl/millenium-falcon-challenge.git

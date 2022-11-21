@@ -1,0 +1,8 @@
+.idea/*
+.vscode/*
+
+backend/docs/*
+__debug_bin
+node_modules
+
+*.exe

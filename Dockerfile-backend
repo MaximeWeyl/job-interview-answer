@@ -1,0 +1,24 @@
+# === Build stage ===
+
+FROM golang:1.15.8-alpine3.13 AS builder
+WORKDIR /root/
+# To be able to use swag
+RUN apk add build-base git && go get -u github.com/swaggo/swag/cmd/swag
+# To download (and cache) project dependencies
+COPY ./go.mod go.sum  ./src/
+RUN cd src && go mod download
+# To build the project
+COPY backend/ ./src/backend
+COPY oddslib/ ./src/oddslib
+RUN cd src && go generate ./backend/
+RUN cd src && GOOS=linux go build -v -o falcon ./backend
+RUN git clone https://github.com/MaximeWeyl/millenium-falcon-challenge.git
+RUN ls
+
+
+# Run stage
+FROM alpine:3.13 AS runner
+WORKDIR /root/
+COPY --from=builder /root/src/falcon /usr/local/sbin/
+COPY --from=builder /root/millenium-falcon-challenge/examples examples
+CMD ["falcon", "./examples/example1/millenium-falcon.json"]
